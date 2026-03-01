@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "nalicore",
+    "slug": "nalicore",
+    "icon": "./assets/icons/CUY.png",
+    "web": {
+      "bundler": "webpack",
+      "favicon": "./assets/icons/nalicore_logo.png",
+      "name": "nalicore",
+      "shortName": "nalicore",
+      "display": "standalone",
+      "themeColor": "#024A59",
+      "backgroundColor": "#ffffff",
+      "startUrl": ".",
+      "scope": "/"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos",
+          "cameraPermission": "The app accesses your camera to let you take photos of your documents."
+        }
+      ],
+      "expo-font"
+    ]
+  }
+}
