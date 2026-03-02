@@ -3,8 +3,10 @@
     "name": "nalicore",
     "slug": "nalicore",
     "icon": "./assets/icons/CUY.png",
+    "platforms": ["ios", "android", "web"],
     "web": {
-      "bundler": "webpack",
+      "bundler": "metro",
+      "output": "single",
       "favicon": "./assets/icons/nalicore_logo.png",
       "name": "nalicore",
       "shortName": "nalicore",
