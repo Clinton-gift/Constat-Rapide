@@ -1,38 +1,23 @@
 {
-  "short_name": "nalicore",
-  "name": "Taxi Identification ",
-  "id": "/",
+  "short_name": "Nalicore",
+  "name": "Taxi Identification",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#024A59",
   "icons": [
     {
-      "src": "/assets/icons/cuy-192.png",
+      "src": "/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/icons/CUY.png",
+      "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
-  ],
-  "screenshots": [
-    {
-      "src": "/assets/icons/CUY.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "/assets/icons/chinda-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
-  "start_url": "/?utm_source=web_app_manifest",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#024A59",
-  "scope": "/"
+  ]
 }

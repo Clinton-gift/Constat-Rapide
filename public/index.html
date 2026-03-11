@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#024A59" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <title>Taxi Identification</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", async function () {
+        try {
+          await navigator.serviceWorker.register("/service-worker.js");
+          console.log("SW registered");
+        } catch (err) {
+          console.warn("SW registration failed", err);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

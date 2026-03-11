@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "nalicore",
-    "slug": "nalicore",
+    "name": "constat rapide",
+    "slug": "constat-rapide",
     "icon": "./assets/icons/CUY.png",
     "platforms": ["ios", "android", "web"],
     "web": {
       "bundler": "metro",
       "output": "single",
-      "favicon": "./assets/icons/nalicore_logo.png",
-      "name": "nalicore",
-      "shortName": "nalicore",
+      "favicon": "./assets/icons/yellowtaxi.png",
+      "name": "constat rapide",
+      "shortName": "constat rapide",
       "display": "standalone",
       "themeColor": "#024A59",
       "backgroundColor": "#ffffff",

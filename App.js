@@ -20,7 +20,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import "./src/global.css";
 
-// ✅ only screen you have
 import HomeScreen from "./src/pages/HomeScreen";
 
 export const AppContext = createContext();
@@ -33,7 +32,6 @@ const COLORS = {
   white: "#ffffff",
 };
 
-// Loading component
 function LoadingScreen() {
   return (
     <View style={styles.loadingContainer}>
@@ -43,7 +41,6 @@ function LoadingScreen() {
   );
 }
 
-// Button component
 const Button = ({ title, onPress, variant = "primary", style }) => {
   const buttonStyle = [
     styles.button,
@@ -66,7 +63,10 @@ const Button = ({ title, onPress, variant = "primary", style }) => {
 function InstallPrompt({ visible, onClose, deferredEvent }) {
   const isIOS =
     Platform.OS === "ios" ||
-    (Platform.OS === "web" && /iPad|iPhone|iPod/.test(navigator.userAgent));
+    (Platform.OS === "web" &&
+      typeof navigator !== "undefined" &&
+      /iPad|iPhone|iPod/.test(navigator.userAgent));
+
   const canPrompt = !!deferredEvent;
 
   return (
@@ -75,7 +75,7 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
         <View style={styles.modalSheet}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 6 }}>
             <Image
-              source={require("./assets/icons/nalicore_logo.png")}
+              source={require("./assets/icons/constatlogo.png")}
               style={{ width: 35, height: 35, borderRadius: 6 }}
             />
             <Text style={styles.modalTitle}>Install the app</Text>
@@ -90,14 +90,21 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
               <Text style={styles.modalText}>
                 {canPrompt
                   ? "Install this app for faster access."
-                  : "To install: open your browser menu and choose “Install app” / “Add to Home screen”."}
+                  : "To install: open your browser menu and choose “Install app” or “Add to Home screen”."}
               </Text>
 
               <Button
                 title={canPrompt ? "Install now" : "OK"}
-                onPress={() => {
-                  if (deferredEvent) deferredEvent.prompt();
-                  onClose();
+                onPress={async () => {
+                  try {
+                    if (deferredEvent) {
+                      await deferredEvent.prompt();
+                    }
+                  } catch (error) {
+                    console.warn("Install prompt failed:", error);
+                  } finally {
+                    onClose();
+                  }
                 }}
                 variant="secondary"
                 style={{ marginTop: 12 }}
@@ -195,7 +202,11 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_400Regular",
   },
 
-  button: { borderRadius: 12, paddingVertical: 14, alignItems: "center" },
+  button: {
+    borderRadius: 12,
+    paddingVertical: 14,
+    alignItems: "center",
+  },
   buttonPrimary: { backgroundColor: COLORS.primary },
   buttonSecondary: { backgroundColor: COLORS.secondary },
   buttonText: { fontFamily: "Montserrat_700Bold", fontSize: 16 },
@@ -220,6 +231,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
   },
-  modalTitle: { fontFamily: "Montserrat_700Bold", fontSize: 18, color: COLORS.text },
-  modalText: { fontFamily: "Montserrat_400Regular", color: COLORS.text },
+  modalTitle: {
+    fontFamily: "Montserrat_700Bold",
+    fontSize: 18,
+    color: COLORS.text,
+  },
+  modalText: {
+    fontFamily: "Montserrat_400Regular",
+    color: COLORS.text,
+  },
 });
