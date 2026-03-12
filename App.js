@@ -21,8 +21,11 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import "./src/global.css";
 
 import HomeScreen from "./src/pages/HomeScreen";
+import SecondScreen from "./src/components/SecondScreenComponents/SecondScreen";
+
 
 export const AppContext = createContext();
+
 const Stack = createStackNavigator();
 
 const COLORS = {
@@ -50,7 +53,9 @@ const Button = ({ title, onPress, variant = "primary", style }) => {
 
   const textStyle = [
     styles.buttonText,
-    variant === "secondary" ? styles.buttonTextSecondary : styles.buttonTextPrimary,
+    variant === "secondary"
+      ? styles.buttonTextSecondary
+      : styles.buttonTextPrimary,
   ];
 
   return (
@@ -73,7 +78,14 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
     <Modal animationType="fade" transparent visible={visible}>
       <View style={styles.modalBackdrop}>
         <View style={styles.modalSheet}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 6 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 10,
+              marginBottom: 6,
+            }}
+          >
             <Image
               source={require("./assets/icons/constatlogo.png")}
               style={{ width: 35, height: 35, borderRadius: 6 }}
@@ -83,7 +95,8 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
 
           {isIOS ? (
             <Text style={styles.modalText}>
-              On iPhone/iPad: tap the Share button in Safari, then choose “Add to Home Screen”.
+              On iPhone/iPad: tap the Share button in Safari, then choose “Add
+              to Home Screen”.
             </Text>
           ) : (
             <View>
@@ -112,8 +125,16 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
             </View>
           )}
 
-          <TouchableOpacity onPress={onClose} style={{ marginTop: 16, alignItems: "center" }}>
-            <Text style={[styles.modalText, { color: COLORS.primary, fontWeight: "600" }]}>
+          <TouchableOpacity
+            onPress={onClose}
+            style={{ marginTop: 16, alignItems: "center" }}
+          >
+            <Text
+              style={[
+                styles.modalText,
+                { color: COLORS.primary, fontWeight: "600" },
+              ]}
+            >
               Later
             </Text>
           </TouchableOpacity>
@@ -167,9 +188,14 @@ export default function App() {
     <AppContext.Provider value={{}}>
       <View style={styles.container}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="home_screen" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="home_screen" component={HomeScreen} />
-          </Stack.Navigator>
+         <Stack.Navigator
+  initialRouteName="HomeScreen"
+  screenOptions={{ headerShown: false }}
+>
+  <Stack.Screen name="HomeScreen" component={HomeScreen} />
+  <Stack.Screen name="SecondScreen" component={SecondScreen} />
+  
+</Stack.Navigator>
         </NavigationContainer>
 
         {Platform.OS === "web" && (
@@ -214,7 +240,10 @@ const styles = StyleSheet.create({
   buttonTextSecondary: { color: COLORS.text },
 
   modalBackdrop: {
-    ...Platform.select({ web: { position: "fixed" }, default: { position: "absolute" } }),
+    ...Platform.select({
+      web: { position: "fixed" },
+      default: { position: "absolute" },
+    }),
     left: 0,
     right: 0,
     top: 0,

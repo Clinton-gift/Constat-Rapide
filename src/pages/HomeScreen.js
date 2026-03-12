@@ -1,16 +1,26 @@
 import React from "react";
-import { SafeAreaView, View, StyleSheet, StatusBar, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  StatusBar,
+  ScrollView,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import HomeHeader from "../components/HomeScreenComponents/HomeHeader";
 import InjuryQuestionCard from "../components/HomeScreenComponents/InjuryQuestionCard";
 import BottomNote from "../components/HomeScreenComponents/BottomNote";
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
+
   const handleInjuredPress = () => {
     console.log("Oui, quelqu’un est blessé");
   };
 
   const handleNoInjuredPress = () => {
-    console.log("Non, personne n’est blessé");
+    navigation.navigate("SecondScreen");
+    
   };
 
   return (
