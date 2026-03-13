@@ -15,7 +15,7 @@ export const InstallPWA = ({ modalIsOpen, handleInstallClick, closeModal }) => {
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Image style={styles.icon} source={{ uri: '/assets/icons/nalicore_logo.png' }} />
-          <Text style={styles.title}>Install Taxi Identification</Text>
+          <Text style={styles.title}>Install constat rapide</Text>
           <Text style={styles.text}>
             Install this app on your home screen for quick and easy access when you're on the go.
           </Text>

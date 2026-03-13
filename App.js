@@ -21,7 +21,8 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import "./src/global.css";
 
 import HomeScreen from "./src/pages/HomeScreen";
-import SecondScreen from "./src/components/SecondScreenComponents/SecondScreen";
+import SecondScreen from "./src/pages/SecondScreen";
+import VuedensembleCaptureScreen from "./src/pages/VuedensembleCaptureScreen";
 
 
 export const AppContext = createContext();
@@ -194,6 +195,7 @@ export default function App() {
 >
   <Stack.Screen name="HomeScreen" component={HomeScreen} />
   <Stack.Screen name="SecondScreen" component={SecondScreen} />
+   <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
   
 </Stack.Navigator>
         </NavigationContainer>
