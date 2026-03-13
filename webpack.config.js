@@ -22,7 +22,7 @@ module.exports = async (env, argv) => {
       inject: 'body',
       meta: {
         viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-        description: 'Taxi Identification — Helper for Drivers',
+        description: 'constat rapide — Helper for Drivers',
         'theme-color': '#024A59',
       },
     }),
