@@ -8,9 +8,9 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-import VehicleTypeHeader from "./VehicleTypeHeader";
-import VehicleTypeGrid from "./VehicleTypeGrid";
-import VehicleTypeContinueButton from "./VehicleTypeContinueButton";
+import VehicleTypeHeader from "../components/SecondScreenComponents/VehicleTypeHeader";
+import VehicleTypeGrid from "../components/SecondScreenComponents/VehicleTypeGrid";
+import VehicleTypeContinueButton from "../components/SecondScreenComponents/VehicleTypeContinueButton";
 
 export default function SecondScreen({ navigation }) {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -19,10 +19,10 @@ export default function SecondScreen({ navigation }) {
   const isMobile = width < 768;
 
   const handleContinue = () => {
-  if (!selectedVehicle) return;
+    if (!selectedVehicle) return;
 
-  navigation.navigate("VuedensembleCaptureScreen");
-};
+    navigation.navigate("VuedensembleCaptureScreen");
+  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
