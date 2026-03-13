@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { SafeAreaView, View, StyleSheet, StatusBar, Alert } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
 
@@ -70,17 +70,39 @@ const stepConfigs = [
   },
 ];
 
-export default function VuedensembleCaptureScreen() {
+export default function VuedensembleCaptureScreen({ navigation, route }) {
   const totalSteps = 7;
   const [permission, requestPermission] = useCameraPermissions();
   const cameraRef = useRef(null);
 
-  const [currentStep, setCurrentStep] = useState(1);
+  const retakeStep = route?.params?.retakeStep ?? null;
+  const incomingPhotos = route?.params?.capturedPhotos ?? null;
+  const fromReview = route?.params?.fromReview ?? false;
+
+  const [currentStep, setCurrentStep] = useState(retakeStep || 1);
   const [cameraOpen, setCameraOpen] = useState(false);
   const [capturedUri, setCapturedUri] = useState(null);
   const [hasValidCapture, setHasValidCapture] = useState(false);
   const [feedbackType, setFeedbackType] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [capturedPhotos, setCapturedPhotos] = useState(incomingPhotos || {});
+
+  useEffect(() => {
+    if (retakeStep) {
+      setCurrentStep(retakeStep);
+    }
+    if (incomingPhotos) {
+      setCapturedPhotos(incomingPhotos);
+    }
+
+    const existingPhoto = incomingPhotos?.[retakeStep];
+    if (retakeStep && existingPhoto?.image) {
+      setCapturedUri(existingPhoto.image);
+      setHasValidCapture(true);
+      setFeedbackType("good");
+      setFeedbackMessage("👍 Photo correcte.");
+    }
+  }, [retakeStep, incomingPhotos]);
 
   const currentConfig = useMemo(() => {
     return stepConfigs.find((step) => step.id === currentStep) ?? stepConfigs[0];
@@ -94,12 +116,7 @@ export default function VuedensembleCaptureScreen() {
     setFeedbackMessage("");
   };
 
-  // Temporary mock validation logic
   const validatePhotoMock = () => {
-    if (currentStep === 1 || currentStep === 2) {
-      return { ok: true, message: "👍 Photo correcte." };
-    }
-
     return { ok: true, message: "👍 Photo correcte." };
   };
 
@@ -141,6 +158,15 @@ export default function VuedensembleCaptureScreen() {
         setHasValidCapture(true);
         setFeedbackType("good");
         setFeedbackMessage(validation.message);
+
+        setCapturedPhotos((prev) => ({
+          ...prev,
+          [currentStep]: {
+            id: currentStep,
+            title: currentConfig.title,
+            image: photo.uri,
+          },
+        }));
       } else {
         setHasValidCapture(false);
         setFeedbackType("bad");
@@ -157,16 +183,40 @@ export default function VuedensembleCaptureScreen() {
   const handleContinuePress = () => {
     if (!hasValidCapture) return;
 
+    const updatedPhotos = {
+      ...capturedPhotos,
+      [currentStep]: {
+        id: currentStep,
+        title: currentConfig.title,
+        image: capturedUri,
+      },
+    };
+
+    const reviewItems = stepConfigs.map((step) => ({
+      id: step.id,
+      title: step.title,
+      image: updatedPhotos[step.id]?.image || null,
+    }));
+
+    if (fromReview) {
+      navigation.replace("PhotoReviewScreen", {
+        reviewItems,
+        capturedPhotos: updatedPhotos,
+      });
+      return;
+    }
+
     if (currentStep < totalSteps) {
+      setCapturedPhotos(updatedPhotos);
       setCurrentStep((prev) => prev + 1);
       resetStepState();
       return;
     }
 
-    Alert.alert(
-      "Étape suivante",
-      "La page suivante sera connectée plus tard."
-    );
+    navigation.navigate("PhotoReviewScreen", {
+      reviewItems,
+      capturedPhotos: updatedPhotos,
+    });
   };
 
   const showTopUi = !cameraOpen;
