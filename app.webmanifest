@@ -1,6 +1,6 @@
 {
-  "short_name": "Nalicore",
-  "name": "Taxi Identification",
+  "short_name": "Constat",
+  "name": "constat rapide",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

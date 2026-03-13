@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import useShouldShowPrompt from './useShouldShowPrompt';
 
-const KEY = 'Taxi Identification_webInstallPromptedAt';
+const KEY = 'constat rapide_webInstallPromptedAt';
 
 const useWebInstallPrompt = () => {
   const [installEvt, setInstallEvt] = useState(null);
