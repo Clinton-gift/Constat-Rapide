@@ -24,7 +24,8 @@ import HomeScreen from "./src/pages/HomeScreen";
 import SecondScreen from "./src/pages/SecondScreen";
 import VuedensembleCaptureScreen from "./src/pages/VuedensembleCaptureScreen";
 import PhotoReviewScreen from "./src/pages/PhotoReviewScreen";
-
+import CirconstancesVehicleSelectionScreen from "./src/pages/CirconstancesVehicleSelectionScreen";
+import CirconstancesFormScreen from "./src/pages/CirconstancesFormScreen";
 
 export const AppContext = createContext();
 
@@ -198,6 +199,8 @@ export default function App() {
   <Stack.Screen name="SecondScreen" component={SecondScreen} />
    <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
   <Stack.Screen name="PhotoReviewScreen" component={PhotoReviewScreen} />
+  <Stack.Screen name="CirconstancesVehicleSelectionScreen" component={CirconstancesVehicleSelectionScreen}/>
+  <Stack.Screen name="CirconstancesFormScreen" component={CirconstancesFormScreen}/>
 </Stack.Navigator>
         </NavigationContainer>
 
