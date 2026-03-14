@@ -81,6 +81,7 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
 
   const [currentStep, setCurrentStep] = useState(retakeStep || 1);
   const [cameraOpen, setCameraOpen] = useState(false);
+  const [cameraFacing, setCameraFacing] = useState("back");
   const [capturedUri, setCapturedUri] = useState(null);
   const [hasValidCapture, setHasValidCapture] = useState(false);
   const [feedbackType, setFeedbackType] = useState(null);
@@ -120,6 +121,10 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
     return { ok: true, message: "👍 Photo correcte." };
   };
 
+  const handleSwitchCamera = () => {
+    setCameraFacing((prev) => (prev === "back" ? "front" : "back"));
+  };
+
   const handleCameraPress = async () => {
     try {
       if (!permission?.granted) {
@@ -135,6 +140,7 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
 
       if (!cameraOpen) {
         setCameraOpen(true);
+        setCameraFacing("back");
         setCapturedUri(null);
         setHasValidCapture(false);
         setFeedbackType(null);
@@ -252,6 +258,7 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
             cameraRef={cameraRef}
             permissionGranted={!!permission?.granted}
             CameraViewComponent={CameraView}
+            cameraFacing={cameraFacing}
           />
         ) : (
           <VuedensembleCaptureStepBackground
@@ -261,6 +268,7 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
             cameraRef={cameraRef}
             permissionGranted={!!permission?.granted}
             CameraViewComponent={CameraView}
+            cameraFacing={cameraFacing}
           />
         )}
 
@@ -271,6 +279,7 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
           feedbackType={feedbackType}
           feedbackMessage={feedbackMessage}
           cameraOpen={cameraOpen}
+          onSwitchCamera={handleSwitchCamera}
         />
       </View>
     </SafeAreaView>
