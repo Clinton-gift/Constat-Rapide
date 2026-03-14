@@ -31,7 +31,7 @@ const VEHICLES = [
     id: "suv",
     label: "SUV",
     image: require("../../../assets/vehicles/SUV.png"),
-    scale: 1.7,
+    scale: 0.8,
   },
   {
     id: "petite_voiture",
