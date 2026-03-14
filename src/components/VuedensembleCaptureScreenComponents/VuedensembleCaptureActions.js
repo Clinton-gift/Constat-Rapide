@@ -17,6 +17,7 @@ export default function VuedensembleCaptureActions({
   feedbackType,
   feedbackMessage,
   cameraOpen,
+  onSwitchCamera,
 }) {
   const { width } = useWindowDimensions();
   const isSmall = width < 380;
@@ -24,6 +25,8 @@ export default function VuedensembleCaptureActions({
   const captureButtonSize = isSmall ? 76 : 84;
   const continueWidth = isSmall ? 128 : 140;
   const continueHeight = isSmall ? 42 : 46;
+  const switchWidth = isSmall ? 108 : 118;
+  const switchHeight = isSmall ? 38 : 42;
 
   return (
     <View style={styles.wrapper}>
@@ -37,6 +40,23 @@ export default function VuedensembleCaptureActions({
         >
           {feedbackMessage}
         </Text>
+      )}
+
+      {cameraOpen && (
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={onSwitchCamera}
+          style={[
+            styles.switchButton,
+            {
+              width: switchWidth,
+              height: switchHeight,
+              borderRadius: 12,
+            },
+          ]}
+        >
+          <Text style={styles.switchText}>Switch camera</Text>
+        </TouchableOpacity>
       )}
 
       <TouchableOpacity
@@ -109,6 +129,23 @@ const styles = StyleSheet.create({
 
   badText: {
     color: "#D63C3C",
+  },
+
+  switchButton: {
+    position: "absolute",
+    left: 24,
+    bottom: 20,
+    backgroundColor: "#2E63D8",
+    borderWidth: 1,
+    borderColor: "#2E63D8",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  switchText: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+    fontSize: 13,
   },
 
   captureButton: {
