@@ -8,6 +8,7 @@ export default function VuedensembleCaptureStepBackground({
   cameraRef,
   permissionGranted,
   CameraViewComponent,
+  cameraFacing,
 }) {
   const showCamera = cameraOpen && permissionGranted;
   const showCapturedPhoto = !!capturedUri;
@@ -18,7 +19,7 @@ export default function VuedensembleCaptureStepBackground({
         <CameraViewComponent
           ref={cameraRef}
           style={styles.cameraOnlyView}
-          facing="back"
+          facing={cameraFacing}
         />
       </View>
     );

@@ -10,6 +10,7 @@ export default function VuedensembleCaptureFocusArea({
   cameraRef,
   permissionGranted,
   CameraViewComponent,
+  cameraFacing,
 }) {
   const { width } = useWindowDimensions();
   const isSmall = width < 380;
@@ -27,7 +28,7 @@ export default function VuedensembleCaptureFocusArea({
         <CameraViewComponent
           ref={cameraRef}
           style={styles.cameraOnlyView}
-          facing="back"
+          facing={cameraFacing}
         />
       </View>
     );
