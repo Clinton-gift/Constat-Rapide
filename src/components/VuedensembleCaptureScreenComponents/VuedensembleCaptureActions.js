@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-const cameraicone = require("../../../assets/icons/cameraicone.png");
+const cameraicone = require("../../../assets/icons/cameraicone.webp");
 
 export default function VuedensembleCaptureActions({
   hasCaptured,
@@ -84,7 +84,9 @@ export default function VuedensembleCaptureActions({
         disabled={!hasCaptured}
         style={[
           styles.continueButton,
-          hasCaptured ? styles.continueButtonActive : styles.continueButtonDisabled,
+          hasCaptured
+            ? styles.continueButtonActive
+            : styles.continueButtonDisabled,
           {
             width: continueWidth,
             height: continueHeight,

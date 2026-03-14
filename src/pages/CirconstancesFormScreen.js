@@ -17,7 +17,7 @@ const STEP_OPTIONS = {
     {
       id: "s1_1",
       label: "Sortait d’un parking / lieu privé",
-      icon: require("../../assets/icons/main.png"),
+      icon: require("../../assets/icons/main.webp"),
       iconWidth: 43,
       iconHeight: 43,
     },
@@ -48,7 +48,7 @@ const STEP_OPTIONS = {
     {
       id: "s2_1",
       label: "En stationnement / à l'arrêt",
-      icon: require("../../assets/icons/main.png"),
+      icon: require("../../assets/icons/main.webp"),
       iconWidth: 44,
       iconHeight: 44,
     },
@@ -76,7 +76,7 @@ const STEP_OPTIONS = {
     {
       id: "s2_5",
       label: "Reculait",
-      icon: require("../../assets/icons/carcar.png"),
+      icon: require("../../assets/icons/carcar.webp"),
       iconWidth: 39,
       iconHeight: 39,
     },
@@ -86,7 +86,7 @@ const STEP_OPTIONS = {
     {
       id: "s3_1",
       label: "Changeait de file",
-      icon: require("../../assets/icons/main.png"),
+      icon: require("../../assets/icons/main.webp"),
       iconWidth: 44,
       iconHeight: 44,
     },
@@ -117,14 +117,14 @@ const STEP_OPTIONS = {
     {
       id: "s4_1",
       label: "Heurtait l’arrière d’un autre véhicule",
-      icon: require("../../assets/icons/main.png"),
+      icon: require("../../assets/icons/main.webp"),
       iconWidth: 44,
       iconHeight: 44,
     },
     {
       id: "s4_2",
       label: "Heurtait l’arrière d’un véhicule en stationnement.",
-      icon: require("../../assets/icons/carobstacle.png"),
+      icon: require("../../assets/icons/carobstacle.webp"),
       iconWidth: 44,
       iconHeight: 44,
     },
@@ -145,7 +145,7 @@ const STEP_OPTIONS = {
     {
       id: "s4_5",
       label: "Heurtait un obstacle",
-      icon: require("../../assets/icons/carobstacle.png"),
+      icon: require("../../assets/icons/carobstacle.webp"),
       iconWidth: 44,
       iconHeight: 44,
     },

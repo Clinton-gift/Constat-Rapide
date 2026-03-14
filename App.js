@@ -90,7 +90,7 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
             }}
           >
             <Image
-              source={require("./assets/icons/constatlogo.png")}
+              source={require("./assets/icons/constatlogo.webp")}
               style={{ width: 35, height: 35, borderRadius: 6 }}
             />
             <Text style={styles.modalTitle}>Install the app</Text>
