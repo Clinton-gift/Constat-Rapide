@@ -8,7 +8,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-const cameraicone = require("../../../assets/icons/cameraicone.png");
+const cameraicone = require("../../../assets/icons/cameraicone.webp");
 
 export default function VuedensembleCaptureActions({
   hasCaptured,

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, useWindowDimensions } from "react-native";
 
-const logo = require("../../../assets/constatraoidelogo.png");
+const logo = require("../../../assets/constatraoidelogo.webp");
 
 export default function HomeHeader() {
   const { width } = useWindowDimensions();

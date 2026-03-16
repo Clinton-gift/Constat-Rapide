@@ -24,6 +24,9 @@ import HomeScreen from "./src/pages/HomeScreen";
 import SecondScreen from "./src/pages/SecondScreen";
 import VuedensembleCaptureScreen from "./src/pages/VuedensembleCaptureScreen";
 import PhotoReviewScreen from "./src/pages/PhotoReviewScreen";
+import CirconstancesVehicleSelectionScreen from "./src/pages/CirconstancesVehicleSelectionScreen";
+import CirconstancesFormScreen from "./src/pages/CirconstancesFormScreen";
+import VerifyChoicesScreen from "./src/pages/VerifyChoicesScreen";
 
 
 export const AppContext = createContext();
@@ -89,7 +92,7 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
             }}
           >
             <Image
-              source={require("./assets/icons/constatlogo.png")}
+              source={require("./assets/icons/constatlogo.webp")}
               style={{ width: 35, height: 35, borderRadius: 6 }}
             />
             <Text style={styles.modalTitle}>Install the app</Text>
@@ -198,6 +201,9 @@ export default function App() {
   <Stack.Screen name="SecondScreen" component={SecondScreen} />
    <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
   <Stack.Screen name="PhotoReviewScreen" component={PhotoReviewScreen} />
+   <Stack.Screen name="CirconstancesVehicleSelectionScreen" component={CirconstancesVehicleSelectionScreen}/>
+  <Stack.Screen name="CirconstancesFormScreen" component={CirconstancesFormScreen}/>
+  <Stack.Screen name="VerifyChoicesScreen" component={VerifyChoicesScreen}/>
 </Stack.Navigator>
         </NavigationContainer>
 

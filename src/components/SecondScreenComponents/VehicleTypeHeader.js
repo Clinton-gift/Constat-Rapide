@@ -14,7 +14,7 @@ export default function VehicleTypeHeader() {
     <>
       <View style={styles.header}>
         <Image
-          source={require("../../../assets/constatraoidelogo.png")}
+          source={require("../../../assets/constatraoidelogo.webp")}
           style={{ width: logoWidth, height: logoHeight }}
           resizeMode="contain"
         />
