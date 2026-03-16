@@ -9,14 +9,15 @@ import VuedensembleCaptureFocusArea from "../components/VuedensembleCaptureScree
 import VuedensembleCaptureActions from "../components/VuedensembleCaptureScreenComponents/VuedensembleCaptureActions";
 import VuedensembleCaptureStepBackground from "../components/VuedensembleCaptureScreenComponents/VuedensembleCaptureStepBackground";
 
+
 const stepConfigs = [
   {
     id: 1,
     stepLabel: "1 sur 7",
     title: "Vue d’ensemble",
     instruction: "Photographiez les deux véhicules\ndans la scène.",
-    bgImage: require("../../assets/bgimg.png"),
-    focusImage: require("../../assets/focusimg.png"),
+    bgImage: require("../../assets/bgimg.webp"),
+    focusImage: require("../../assets/focusimg.webp"),
     showPin: true,
     usesFocusArea: true,
   },
@@ -24,24 +25,24 @@ const stepConfigs = [
     id: 2,
     stepLabel: "2 sur 7",
     title: "Votre véhicule",
-    instruction: "Prenéz ene photo complète\nde votre véhicule.",
-    bgImage: require("../../assets/bgimg2.png"),
+    instruction: "Prenez une photo complète\nde votre véhicule.",
+    bgImage: require("../../assets/bgimg2.webp"),
     usesFocusArea: false,
   },
   {
     id: 3,
     stepLabel: "3 sur 7",
     title: "Autre véhicule",
-    instruction: "Prenéz une photo complète\nde l’autre véhicule.",
-    bgImage: require("../../assets/bgimg3.png"),
+    instruction: "Prenez une photo complète\nde l’autre véhicule.",
+    bgImage: require("../../assets/bgimg3.webp"),
     usesFocusArea: false,
   },
   {
     id: 4,
     stepLabel: "4 sur 7",
     title: "Votre plaque",
-    instruction: "Prenéz une photo claire de\nvotre plaque d'immatriculation",
-    bgImage: require("../../assets/bgimg4.png"),
+    instruction: "Prenez une photo claire de\nvotre plaque d'immatriculation.",
+    bgImage: require("../../assets/bgimg4.webp"),
     usesFocusArea: false,
   },
   {
@@ -50,23 +51,23 @@ const stepConfigs = [
     title: "Plaque de l’autre véhicule",
     instruction:
       "Prenez une photo claire de\nla plaque d'immatriculation\nde l’autre véhicule.",
-    bgImage: require("../../assets/bgimg5.png"),
+    bgImage: require("../../assets/bgimg5.webp"),
     usesFocusArea: false,
   },
   {
     id: 6,
     stepLabel: "6 sur 7",
-    title: "Dègâts sur votre véhicule",
+    title: "Dégâts sur votre véhicule",
     instruction: "Prenez une photo des dégâts\nsur votre véhicule.",
-    bgImage: require("../../assets/bgimg6.png"),
+    bgImage: require("../../assets/bgimg6.webp"),
     usesFocusArea: false,
   },
   {
     id: 7,
     stepLabel: "7 sur 7",
-    title: "Dègâts sur l’autre véhicule",
+    title: "Dégâts sur l’autre véhicule",
     instruction: "Prenez une photo des dégâts\nsur l’autre véhicule.",
-    bgImage: require("../../assets/bgimg7.png"),
+    bgImage: require("../../assets/bgimg7.webp"),
     usesFocusArea: false,
   },
 ];

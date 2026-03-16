@@ -29,7 +29,11 @@ export default function PhotoReviewScreen({ navigation, route }) {
 
   const handleContinue = () => {
     console.log("Continue from photo review");
-    // navigation.navigate("NextScreen");
+    navigation.navigate("CirconstancesVehicleSelectionScreen", {
+        yourVehicleImage: capturedPhotos?.[2]?.image || null,
+         otherVehicleImage: capturedPhotos?.[3]?.image || null,
+
+    });
   };
 
   return (
