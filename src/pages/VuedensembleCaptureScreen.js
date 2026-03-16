@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { SafeAreaView, View, StyleSheet, StatusBar, Alert } from "react-native";
+import { SafeAreaView, View, StyleSheet, StatusBar, Alert, Platform } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
+import WebCameraView from "../components/WebCameraView";
 
 import VuedensembleCaptureProgress from "../components/VuedensembleCaptureScreenComponents/VuedensembleCaptureProgress";
 import VuedensembleCaptureInstructionCard from "../components/VuedensembleCaptureScreenComponents/VuedensembleCaptureInstructionCard";
@@ -81,12 +82,13 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
 
   const [currentStep, setCurrentStep] = useState(retakeStep || 1);
   const [cameraOpen, setCameraOpen] = useState(false);
-  const [cameraFacing, setCameraFacing] = useState("back");
+  const [cameraFacing, setCameraFacing] = useState(Platform.OS === 'web' ? 'environment' : 'back');
   const [capturedUri, setCapturedUri] = useState(null);
   const [hasValidCapture, setHasValidCapture] = useState(false);
   const [feedbackType, setFeedbackType] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [capturedPhotos, setCapturedPhotos] = useState(incomingPhotos || {});
+  const [isCameraReady, setIsCameraReady] = useState(false);
 
   useEffect(() => {
     if (retakeStep) {
@@ -115,6 +117,7 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
     setHasValidCapture(false);
     setFeedbackType(null);
     setFeedbackMessage("");
+    setIsCameraReady(false);
   };
 
   const validatePhotoMock = () => {
@@ -122,70 +125,137 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
   };
 
   const handleSwitchCamera = () => {
+    if (Platform.OS === "web") {
+      setCameraFacing((prev) => (prev === "front" ? "environment" : "front"));
+      return;
+    }
+
     setCameraFacing((prev) => (prev === "back" ? "front" : "back"));
   };
 
-  const handleCameraPress = async () => {
-    try {
-      if (!permission?.granted) {
-        const result = await requestPermission();
-        if (!result.granted) {
-          Alert.alert(
-            "Permission caméra refusée",
-            "Veuillez autoriser l’accès à la caméra pour continuer."
-          );
-          return;
-        }
-      }
+  // const handleCameraPress = async () => {
+  //   try {
+  //     if (!permission?.granted) {
+  //       const result = await requestPermission();
+  //       if (!result.granted) {
+  //         Alert.alert(
+  //           "Permission caméra refusée",
+  //           "Veuillez autoriser l’accès à la caméra pour continuer."
+  //         );
+  //         return;
+  //       }
+  //     }
 
-      if (!cameraOpen) {
-        setCameraOpen(true);
-        setCameraFacing("back");
-        setCapturedUri(null);
-        setHasValidCapture(false);
-        setFeedbackType(null);
-        setFeedbackMessage("");
+  //     if (!cameraOpen) {
+  //       setCameraOpen(true);
+  //       setCameraFacing(Platform.OS === 'web' ? 'back' : 'back');
+  //       setCapturedUri(null);
+  //       setHasValidCapture(false);
+  //       setFeedbackType(null);
+  //       setFeedbackMessage("");
+  //       return;
+  //     }
+
+  //     if (!cameraRef.current) return;
+
+  //     const photo = await cameraRef.current.takePictureAsync({
+  //       quality: 0.8,
+  //       skipProcessing: true,
+  //     });
+
+  //     setCapturedUri(photo.uri);
+  //     setCameraOpen(false);
+
+  //     const validation = validatePhotoMock();
+
+  //     if (validation.ok) {
+  //       setHasValidCapture(true);
+  //       setFeedbackType("good");
+  //       setFeedbackMessage(validation.message);
+
+  //       setCapturedPhotos((prev) => ({
+  //         ...prev,
+  //         [currentStep]: {
+  //           id: currentStep,
+  //           title: currentConfig.title,
+  //           image: photo.uri,
+  //         },
+  //       }));
+  //     } else {
+  //       setHasValidCapture(false);
+  //       setFeedbackType("bad");
+  //       setFeedbackMessage("Image floue. Veuillez reprendre la photo.");
+  //     }
+  //   } catch (error) {
+  //     setCameraOpen(false);
+  //     setHasValidCapture(false);
+  //     setFeedbackType("bad");
+  //     setFeedbackMessage("Impossible de prendre la photo. Réessayez.");
+  //   }
+  // };
+
+  const handleCameraPress = async () => {
+  try {
+    if (Platform.OS !== "web" && !permission?.granted) {
+      const result = await requestPermission();
+      if (!result.granted) {
+        Alert.alert(
+          "Permission caméra refusée",
+          "Veuillez autoriser l’accès à la caméra pour continuer."
+        );
         return;
       }
+    }
 
-      if (!cameraRef.current) return;
+    if (!cameraOpen) {
+      setCameraOpen(true);
+      setIsCameraReady(false);
+      setCameraFacing(Platform.OS === "web" ? "environment" : "back");
+      setCapturedUri(null);
+      setHasValidCapture(false);
+      setFeedbackType(null);
+      setFeedbackMessage("");
+      return;
+    }
 
-      const photo = await cameraRef.current.takePictureAsync({
-        quality: 0.8,
-        skipProcessing: true,
-      });
+    if (!cameraRef.current || !isCameraReady) return;
 
-      setCapturedUri(photo.uri);
-      setCameraOpen(false);
+    const photo = await cameraRef.current.takePictureAsync({
+      quality: 0.8,
+      skipProcessing: true,
+    });
 
-      const validation = validatePhotoMock();
+    setCapturedUri(photo.uri);
+    setCameraOpen(false);
 
-      if (validation.ok) {
-        setHasValidCapture(true);
-        setFeedbackType("good");
-        setFeedbackMessage(validation.message);
+    const validation = validatePhotoMock();
 
-        setCapturedPhotos((prev) => ({
-          ...prev,
-          [currentStep]: {
-            id: currentStep,
-            title: currentConfig.title,
-            image: photo.uri,
-          },
-        }));
-      } else {
-        setHasValidCapture(false);
-        setFeedbackType("bad");
-        setFeedbackMessage("Image floue. Veuillez reprendre la photo.");
-      }
-    } catch (error) {
-      setCameraOpen(false);
+    if (validation.ok) {
+      setHasValidCapture(true);
+      setFeedbackType("good");
+      setFeedbackMessage(validation.message);
+
+      setCapturedPhotos((prev) => ({
+        ...prev,
+        [currentStep]: {
+          id: currentStep,
+          title: currentConfig.title,
+          image: photo.uri,
+        },
+      }));
+    } else {
       setHasValidCapture(false);
       setFeedbackType("bad");
-      setFeedbackMessage("Impossible de prendre la photo. Réessayez.");
+      setFeedbackMessage("Image floue. Veuillez reprendre la photo.");
     }
-  };
-
+  } catch (error) {
+    console.log("Camera error: - VuedensembleCaptureScreen.js:246", error);
+    setCameraOpen(false);
+    setHasValidCapture(false);
+    setFeedbackType("bad");
+    setFeedbackMessage("Impossible de prendre la photo. Réessayez.");
+  }
+};
   const handleContinuePress = () => {
     if (!hasValidCapture) return;
 
@@ -256,9 +326,15 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
             cameraOpen={cameraOpen}
             capturedUri={capturedUri}
             cameraRef={cameraRef}
-            permissionGranted={!!permission?.granted}
-            CameraViewComponent={CameraView}
+            permissionGranted={Platform.OS === 'web' || !!permission?.granted}
+            CameraViewComponent={Platform.OS === 'web' ? WebCameraView : CameraView}
             cameraFacing={cameraFacing}
+            onCameraReady={() => setIsCameraReady(true)}
+            onMountError={(e) => {
+              console.log("Camera mount error: - VuedensembleCaptureScreen.js:328", e);
+              setFeedbackType("bad");
+              setFeedbackMessage("La caméra ne peut pas démarrer.");
+            }}
           />
         ) : (
           <VuedensembleCaptureStepBackground
@@ -266,9 +342,15 @@ export default function VuedensembleCaptureScreen({ navigation, route }) {
             cameraOpen={cameraOpen}
             capturedUri={capturedUri}
             cameraRef={cameraRef}
-            permissionGranted={!!permission?.granted}
-            CameraViewComponent={CameraView}
+            permissionGranted={Platform.OS === 'web' || !!permission?.granted}
+            CameraViewComponent={Platform.OS === 'web' ? WebCameraView : CameraView}
             cameraFacing={cameraFacing}
+            onCameraReady={() => setIsCameraReady(true)}
+            onMountError={(e) => {
+              console.log("Camera mount error: - VuedensembleCaptureScreen.js:344", e);
+              setFeedbackType("bad");
+              setFeedbackMessage("La caméra ne peut pas démarrer.");
+            }}
           />
         )}
 

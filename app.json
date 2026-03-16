@@ -14,17 +14,23 @@
       "themeColor": "#024A59",
       "backgroundColor": "#ffffff",
       "startUrl": ".",
-      "scope": "/"
+      "scope": "/",
+      "https": true
     },
     "plugins": [
-      [
-        "expo-image-picker",
-        {
-          "photosPermission": "The app accesses your photos",
-          "cameraPermission": "The app accesses your camera to let you take photos of your documents."
-        }
-      ],
-      "expo-font"
-    ]
+        [
+          "expo-camera",
+          {
+            "cameraPermission": "The app accesses your camera to let you take photos of your documents."
+          }
+        ],
+        [
+          "expo-image-picker",
+          {
+            "photosPermission": "The app accesses your photos"
+          }
+        ],
+        "expo-font"
+      ]
   }
 }
