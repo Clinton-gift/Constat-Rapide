@@ -27,6 +27,8 @@ import PhotoReviewScreen from "./src/pages/PhotoReviewScreen";
 import CirconstancesVehicleSelectionScreen from "./src/pages/CirconstancesVehicleSelectionScreen";
 import CirconstancesFormScreen from "./src/pages/CirconstancesFormScreen";
 import VerifyChoicesScreen from "./src/pages/VerifyChoicesScreen";
+import DescribeAccidentScreen from "./src/pages/DescribeAccidentScreen";
+import InviteOtherDriverScreen from "./src/pages/InviteOtherDriverScreen";
 
 
 export const AppContext = createContext();
@@ -204,6 +206,8 @@ export default function App() {
    <Stack.Screen name="CirconstancesVehicleSelectionScreen" component={CirconstancesVehicleSelectionScreen}/>
   <Stack.Screen name="CirconstancesFormScreen" component={CirconstancesFormScreen}/>
   <Stack.Screen name="VerifyChoicesScreen" component={VerifyChoicesScreen}/>
+  <Stack.Screen name="DescribeAccidentScreen" component={DescribeAccidentScreen}/>
+  <Stack.Screen name="InviteOtherDriverScreen" component={InviteOtherDriverScreen} options={{ headerShown: false }}/>
 </Stack.Navigator>
         </NavigationContainer>
 

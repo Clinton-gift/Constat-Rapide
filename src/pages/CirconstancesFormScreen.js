@@ -13,68 +13,41 @@ import OptionsList from "../components/CirconstancesFormComponents/OptionsList";
 import BottomButton from "../components/CirconstancesFormComponents/BottomButton";
 
 const STEP_OPTIONS = {
+ 
+  
+
+
   1: [
     {
       id: "s1_1",
-      label: "Sortait d’un parking / lieu privé",
+      label: "En stationnement / à l'arrêt",
       icon: require("../../assets/icons/car2.png"),
       iconWidth: 43,
       iconHeight: 43,
     },
     {
       id: "s1_2",
-      label: "S'engageait dans un parking / lieu privé",
-      icon: require("../../assets/icons/cararrow.png"),
-      iconWidth: 44,
-      iconHeight: 44,
-    },
-    {
-      id: "s1_3",
-      label: "Venait de droite",
-      icon: require("../../assets/icons/cararrow.png"),
-      iconWidth: 43,
-      iconHeight: 43,
-    },
-    {
-      id: "s1_4",
-      label: "N’avait pas observé la priorité",
-      icon: require("../../assets/icons/warning.png"),
-      iconWidth: 40,
-      iconHeight: 40,
-    },
-  ],
-
-  2: [
-    {
-      id: "s2_1",
-      label: "En stationnement / à l'arrêt",
-      icon: require("../../assets/icons/car2.png"),
-      iconWidth: 44,
-      iconHeight: 44,
-    },
-    {
-      id: "s2_2",
       label: "Quittait un stationnement",
       icon: require("../../assets/icons/cararrow1.png"),
       iconWidth: 44,
       iconHeight: 44,
     },
     {
-      id: "s2_3",
+      id: "s1_3",
       label: "Prenait un stationnement",
       icon: require("../../assets/icons/carbox.png"),
       iconWidth: 39,
       iconHeight: 39,
     },
     {
-      id: "s2_4",
+      id: "s1_4",
       label: "Doublait",
       icon: require("../../assets/icons/cararrow.png"),
       iconWidth: 44,
       iconHeight: 44,
     },
     {
-      id: "s2_5",
+      id: "s1_5",
       label: "Reculait",
       icon: require("../../assets/icons/carcar.webp"),
       iconWidth: 39,
@@ -82,30 +55,30 @@ const STEP_OPTIONS = {
     },
   ],
 
-  3: [
+  2: [
     {
-      id: "s3_1",
+      id: "s2_1",
       label: "Changeait de file",
       icon: require("../../assets/icons/car2.png"),
-      iconWidth: 44,
-      iconHeight: 44,
+      iconWidth: 43,
+      iconHeight: 43,
     },
     {
-      id: "s3_2",
+      id: "s2_2",
       label: "Doublait",
       icon: require("../../assets/icons/cararrow1.png"),
       iconWidth: 44,
       iconHeight: 44,
     },
     {
-      id: "s3_3",
+      id: "s2_3",
       label: "Virait à droite",
       icon: require("../../assets/icons/cararrow.png"),
       iconWidth: 44,
       iconHeight: 44,
     },
     {
-      id: "s3_4",
+      id: "s2_4",
       label: "Virait à gauche",
       icon: require("../../assets/icons/cararrow.png"),
       iconWidth: 44,
@@ -113,13 +86,43 @@ const STEP_OPTIONS = {
     },
   ],
 
+   3: [
+    {
+      id: "s3_1",
+      label: "Sortait d’un parking / lieu privé",
+      icon: require("../../assets/icons/car2.png"),
+      iconWidth: 43,
+      iconHeight: 43,
+    },
+    {
+      id: "s3_2",
+      label: "S'engageait dans un parking / lieu privé",
+      icon: require("../../assets/icons/cararrow.png"),
+      iconWidth: 44,
+      iconHeight: 44,
+    },
+    {
+      id: "s3_3",
+      label: "Venait de droite",
+      icon: require("../../assets/icons/cararrow.png"),
+      iconWidth: 43,
+      iconHeight: 43,
+    },
+    {
+      id: "s3_4",
+      label: "N’avait pas observé la priorité",
+      icon: require("../../assets/icons/warning.png"),
+      iconWidth: 40,
+      iconHeight: 40,
+    },
+  ],
   4: [
     {
       id: "s4_1",
       label: "Heurtait l’arrière d’un autre véhicule",
       icon: require("../../assets/icons/car2.png"),
-      iconWidth: 44,
-      iconHeight: 44,
+      iconWidth: 43,
+      iconHeight: 43,
     },
     {
       id: "s4_2",
