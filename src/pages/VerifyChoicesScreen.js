@@ -34,10 +34,12 @@ export default function VerifyChoicesScreen({ navigation, route }) {
   };
 
   const handlePrimaryPress = () => {
-    navigation.navigate("CirconstancesVehicleSelectionScreen", {
+    navigation.navigate("DescribeAccidentScreen", {
+      selectedVehicle,
+      selectionsByStep,
+      selectedLabels: choices,
       yourVehicleImage,
       otherVehicleImage,
-      forceVehicleSelection: "other_vehicle",
     });
   };
 
