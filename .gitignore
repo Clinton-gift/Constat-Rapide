@@ -4,3 +4,15 @@ public/**/.DS_Store
 node_modules/
 dist/
 .expo/
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.swn
+*.swo

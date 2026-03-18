@@ -27,6 +27,7 @@ import PhotoReviewScreen from "./src/pages/PhotoReviewScreen";
 import CirconstancesVehicleSelectionScreen from "./src/pages/CirconstancesVehicleSelectionScreen";
 import CirconstancesFormScreen from "./src/pages/CirconstancesFormScreen";
 import VerifyChoicesScreen from "./src/pages/VerifyChoicesScreen";
+import InsuranceOcrScreen from "./src/pages/InsuranceOcrScreen-TEST-PAGE";
 
 
 export const AppContext = createContext();
@@ -119,7 +120,7 @@ function InstallPrompt({ visible, onClose, deferredEvent }) {
                       await deferredEvent.prompt();
                     }
                   } catch (error) {
-                    console.warn("Install prompt failed:", error);
+                    console.warn("Install prompt failed: - App.js:123", error);
                   } finally {
                     onClose();
                   }
@@ -197,7 +198,7 @@ export default function App() {
   initialRouteName="HomeScreen"
   screenOptions={{ headerShown: false }}
 >
-  <Stack.Screen name="HomeScreen" component={HomeScreen} />
+  <Stack.Screen name="HomeScreen" component={InsuranceOcrScreen} />
   <Stack.Screen name="SecondScreen" component={SecondScreen} />
    <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
   <Stack.Screen name="PhotoReviewScreen" component={PhotoReviewScreen} />
