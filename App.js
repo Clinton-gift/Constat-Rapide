@@ -20,6 +20,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import "./src/global.css";
 
+import LandingScreen from "./src/pages/LandingScreen";
+import ProcedureIntroScreen from "./src/pages/ProcedureIntroScreen";
 import HomeScreen from "./src/pages/HomeScreen";
 import SecondScreen from "./src/pages/SecondScreen";
 import VuedensembleCaptureScreen from "./src/pages/VuedensembleCaptureScreen";
@@ -28,6 +30,7 @@ import CirconstancesVehicleSelectionScreen from "./src/pages/CirconstancesVehicl
 import CirconstancesFormScreen from "./src/pages/CirconstancesFormScreen";
 import VerifyChoicesScreen from "./src/pages/VerifyChoicesScreen";
 import DescribeAccidentScreen from "./src/pages/DescribeAccidentScreen";
+import VehicleCompletedTransitionScreen from "./src/pages/VehicleCompletedTransitionScreen";
 import InviteOtherDriverScreen from "./src/pages/InviteOtherDriverScreen";
 
 
@@ -196,9 +199,11 @@ export default function App() {
       <View style={styles.container}>
         <NavigationContainer>
          <Stack.Navigator
-  initialRouteName="HomeScreen"
+  initialRouteName="LandingScreen"
   screenOptions={{ headerShown: false }}
 >
+  <Stack.Screen name="LandingScreen" component={LandingScreen} />
+  <Stack.Screen name="ProcedureIntroScreen" component={ProcedureIntroScreen} />
   <Stack.Screen name="HomeScreen" component={HomeScreen} />
   <Stack.Screen name="SecondScreen" component={SecondScreen} />
    <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
@@ -207,6 +212,7 @@ export default function App() {
   <Stack.Screen name="CirconstancesFormScreen" component={CirconstancesFormScreen}/>
   <Stack.Screen name="VerifyChoicesScreen" component={VerifyChoicesScreen}/>
   <Stack.Screen name="DescribeAccidentScreen" component={DescribeAccidentScreen}/>
+  <Stack.Screen name="VehicleCompletedTransitionScreen" component={VehicleCompletedTransitionScreen} options={{ headerShown: false }}/>
   <Stack.Screen name="InviteOtherDriverScreen" component={InviteOtherDriverScreen} options={{ headerShown: false }}/>
 </Stack.Navigator>
         </NavigationContainer>
