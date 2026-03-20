@@ -19,8 +19,7 @@ export default function HomeScreen() {
   };
 
   const handleNoInjuredPress = () => {
-    navigation.navigate("SecondScreen");
-    
+    navigation.navigate("DegatsAutresScreen");
   };
 
   return (
