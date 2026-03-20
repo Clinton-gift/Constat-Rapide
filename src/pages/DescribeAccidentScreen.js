@@ -13,6 +13,7 @@ import Header from "../components/DescribeAccidentComponents/Header";
 import Body from "../components/DescribeAccidentComponents/Body";
 
 export default function DescribeAccidentScreen({ navigation, route }) {
+  const sessionId = route?.params?.sessionId || `acc_${Date.now()}`;
   const selectedVehicle = route?.params?.selectedVehicle || null;
   const selectionsByStep = route?.params?.selectionsByStep || {};
   const selectedLabels = route?.params?.selectedLabels || [];
@@ -127,7 +128,8 @@ export default function DescribeAccidentScreen({ navigation, route }) {
   const handleContinue = () => {
     if (isContinueDisabled) return;
 
-    navigation.navigate("InviteOtherDriverScreen", {
+    navigation.navigate("VehicleCompletedTransitionScreen", {
+      sessionId,
       selectedVehicle,
       selectionsByStep,
       selectedLabels,
