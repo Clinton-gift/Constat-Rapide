@@ -23,6 +23,7 @@ import "./src/global.css";
 import LandingScreen from "./src/pages/LandingScreen";
 import ProcedureIntroScreen from "./src/pages/ProcedureIntroScreen";
 import HomeScreen from "./src/pages/HomeScreen";
+import DegatsAutresScreen from "./src/pages/DegatsAutresScreen";
 import SecondScreen from "./src/pages/SecondScreen";
 import VuedensembleCaptureScreen from "./src/pages/VuedensembleCaptureScreen";
 import PhotoReviewScreen from "./src/pages/PhotoReviewScreen";
@@ -32,7 +33,7 @@ import VerifyChoicesScreen from "./src/pages/VerifyChoicesScreen";
 import DescribeAccidentScreen from "./src/pages/DescribeAccidentScreen";
 import VehicleCompletedTransitionScreen from "./src/pages/VehicleCompletedTransitionScreen";
 import InviteOtherDriverScreen from "./src/pages/InviteOtherDriverScreen";
-
+import TemoinsScreen from "./src/pages/TemoinsScreen";
 
 export const AppContext = createContext();
 
@@ -198,22 +199,32 @@ export default function App() {
     <AppContext.Provider value={{}}>
       <View style={styles.container}>
         <NavigationContainer>
-         <Stack.Navigator
+          <Stack.Navigator
   initialRouteName="LandingScreen"
   screenOptions={{ headerShown: false }}
 >
   <Stack.Screen name="LandingScreen" component={LandingScreen} />
   <Stack.Screen name="ProcedureIntroScreen" component={ProcedureIntroScreen} />
   <Stack.Screen name="HomeScreen" component={HomeScreen} />
+  <Stack.Screen name="DegatsAutresScreen" component={DegatsAutresScreen} />
+  <Stack.Screen name="TemoinsScreen" component={TemoinsScreen} />
   <Stack.Screen name="SecondScreen" component={SecondScreen} />
-   <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
+  <Stack.Screen name="VuedensembleCaptureScreen" component={VuedensembleCaptureScreen} />
   <Stack.Screen name="PhotoReviewScreen" component={PhotoReviewScreen} />
-   <Stack.Screen name="CirconstancesVehicleSelectionScreen" component={CirconstancesVehicleSelectionScreen}/>
-  <Stack.Screen name="CirconstancesFormScreen" component={CirconstancesFormScreen}/>
-  <Stack.Screen name="VerifyChoicesScreen" component={VerifyChoicesScreen}/>
-  <Stack.Screen name="DescribeAccidentScreen" component={DescribeAccidentScreen}/>
-  <Stack.Screen name="VehicleCompletedTransitionScreen" component={VehicleCompletedTransitionScreen} options={{ headerShown: false }}/>
-  <Stack.Screen name="InviteOtherDriverScreen" component={InviteOtherDriverScreen} options={{ headerShown: false }}/>
+  <Stack.Screen name="CirconstancesVehicleSelectionScreen" component={CirconstancesVehicleSelectionScreen} />
+  <Stack.Screen name="CirconstancesFormScreen" component={CirconstancesFormScreen} />
+  <Stack.Screen name="VerifyChoicesScreen" component={VerifyChoicesScreen} />
+  <Stack.Screen name="DescribeAccidentScreen" component={DescribeAccidentScreen} />
+  <Stack.Screen
+    name="VehicleCompletedTransitionScreen"
+    component={VehicleCompletedTransitionScreen}
+    options={{ headerShown: false }}
+  />
+  <Stack.Screen
+    name="InviteOtherDriverScreen"
+    component={InviteOtherDriverScreen}
+    options={{ headerShown: false }}
+  />
 </Stack.Navigator>
         </NavigationContainer>
 
@@ -240,6 +251,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
   },
+
   loadingText: {
     marginTop: 16,
     fontSize: 16,
@@ -252,11 +264,27 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     alignItems: "center",
   },
-  buttonPrimary: { backgroundColor: COLORS.primary },
-  buttonSecondary: { backgroundColor: COLORS.secondary },
-  buttonText: { fontFamily: "Montserrat_700Bold", fontSize: 16 },
-  buttonTextPrimary: { color: COLORS.white },
-  buttonTextSecondary: { color: COLORS.text },
+
+  buttonPrimary: {
+    backgroundColor: COLORS.primary,
+  },
+
+  buttonSecondary: {
+    backgroundColor: COLORS.secondary,
+  },
+
+  buttonText: {
+    fontFamily: "Montserrat_700Bold",
+    fontSize: 16,
+  },
+
+  buttonTextPrimary: {
+    color: COLORS.white,
+  },
+
+  buttonTextSecondary: {
+    color: COLORS.text,
+  },
 
   modalBackdrop: {
     ...Platform.select({
@@ -272,6 +300,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
+
   modalSheet: {
     width: "100%",
     maxWidth: 460,
@@ -279,11 +308,13 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
   },
+
   modalTitle: {
     fontFamily: "Montserrat_700Bold",
     fontSize: 18,
     color: COLORS.text,
   },
+
   modalText: {
     fontFamily: "Montserrat_400Regular",
     color: COLORS.text,

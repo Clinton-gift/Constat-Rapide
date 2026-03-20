@@ -15,7 +15,7 @@ export default function Body({ onStartProcessPress }) {
         <View style={styles.imagePlaceholder}>
           
           <Image
-            source={require("../../../assets/screen2.png")}
+            source={require("../../../assets/screen2.webp")}
             style={styles.cardImage}
             resizeMode="cover"
           />

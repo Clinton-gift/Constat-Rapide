@@ -30,7 +30,7 @@ export default function Body({ onStartPress }) {
         <View style={styles.illustrationSection}>
           <View style={styles.heroPlaceholder}>
             <Image
-              source={require("../../../assets/screen1.png")}
+              source={require("../../../assets/screen1.webp")}
               style={styles.heroImage}
               resizeMode="cover"
             />
